@@ -7,7 +7,10 @@
         public MainPage()
         {
             InitializeComponent();
+            /// Muutos
+            /// toinen
         }
+
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
