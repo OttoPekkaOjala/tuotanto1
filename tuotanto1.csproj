@@ -64,10 +64,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="Views\AsiakasPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
