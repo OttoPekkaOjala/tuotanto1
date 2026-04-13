@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="tuotanto1.Views.MokkiPage"
-             Title="MokkiPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             xmlns:vm="clr-namespace:tuotanto1.ViewModels"
+             x:Class="tuotanto1.Views.MokkiPage">
+
+    <ContentPage.BindingContext>
+        <vm:MokkiViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20">
+
+        <Label Text="Mökkien hallinta"
+               FontSize="24"
+               HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding Mokit}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Mokkinimi}"
+                              Detail="{Binding Katuosoite}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </VerticalStackLayout>
+
 </ContentPage>

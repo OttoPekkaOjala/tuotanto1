@@ -10,4 +10,8 @@
     <ShellContent Title="Asiakkaat"
               ContentTemplate="{DataTemplate local:AsiakasPage}" />
 
+    <ShellContent
+    Title="Mökit"
+    ContentTemplate="{DataTemplate local:MokkiPage}" />
+
 </Shell>

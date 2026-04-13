@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tuotanto1.ViewModels
 {
-    internal class VarausViewModels
+    internal class VarausViewModel
     {
     }
 }
