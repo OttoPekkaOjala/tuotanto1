@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using tuotanto1.Models;
 
-namespace tuotanto1.ViewModels
+namespace tuotanto1.ViewModels;
+
+public class AsiakasViewModels
 {
-    internal class AsiakasViewModels
+    public ObservableCollection<Asiakas> Asiakkaat { get; set; }
+
+    public AsiakasViewModels()
     {
+        Asiakkaat = new ObservableCollection<Asiakas>
+        {
+            new Asiakas { AsiakasId = 1, Etunimi = "Matti", Sukunimi = "Meikäläinen", Email = "matti@example.com", Puhelinnro = "0401234567" },
+            new Asiakas { AsiakasId = 2, Etunimi = "Liisa", Sukunimi = "Lahtinen", Email = "liisa@example.com", Puhelinnro = "0509876543" }
+        };
     }
 }
