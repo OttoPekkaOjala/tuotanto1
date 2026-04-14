@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tuotanto1.Models
+namespace tuotanto1.Models;
+
+public class Posti
 {
-    internal class Posti
-    {
-    }
+    public string Postinro { get; set; }
+    public string Toimipaikka { get; set; }
 }

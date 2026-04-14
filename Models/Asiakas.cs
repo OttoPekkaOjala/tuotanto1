@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tuotanto1.Models
+namespace tuotanto1.Models;
+
+public class Asiakas
 {
-    internal class Asiakas
-    {
-    }
+    public int AsiakasId { get; set; }
+    public string Etunimi { get; set; }
+    public string Sukunimi { get; set; }
+    public string Lahiosoite { get; set; }
+    public string Postinro { get; set; }
+    public string Email { get; set; }
+    public string Puhelinnro { get; set; }
 }

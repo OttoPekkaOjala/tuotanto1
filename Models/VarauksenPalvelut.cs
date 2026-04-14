@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace tuotanto1.Models;
 
-public class Alue
+public class VarauksenPalvelut
 {
-    public int AlueId { get; set; }
-    public string Nimi { get; set; }
+    public int VarausId { get; set; }
+    public int PalveluId { get; set; }
+    public int Lkm { get; set; }
 }

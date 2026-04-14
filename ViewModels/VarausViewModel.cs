@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tuotanto1.Models
+namespace tuotanto1.ViewModels
 {
-    internal class VaruaksenPalvelut
+    internal class VarausViewModel
     {
     }
 }
