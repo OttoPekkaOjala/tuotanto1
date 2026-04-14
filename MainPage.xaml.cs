@@ -10,16 +10,13 @@
         public MainPage()
         {
             InitializeComponent();
-<<<<<<< HEAD
             /// Muutos
             /// toinen
         }
 
 
-=======
         }
 
->>>>>>> b5b354666e3996511565ccddb650af3ac1cf34d7
         private void OnCounterClicked(object sender, EventArgs e)
         {
             count++;
