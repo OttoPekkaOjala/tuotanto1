@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="tuotanto1.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:tuotanto1"
-    Shell.FlyoutBehavior="Disabled"
-    Title="tuotanto1">
-
-    <ShellContent Title="Asiakkaat"
-              ContentTemplate="{DataTemplate local:AsiakasPage}" />
+    xmlns:views="clr-namespace:tuotanto1.Views"
+    x:Class="tuotanto1.AppShell">
 
     <ShellContent
+    Title="Asiakkaat"
+    ContentTemplate="{DataTemplate views:AsiakasPage}" />
+    <ShellContent
     Title="Mökit"
-    ContentTemplate="{DataTemplate local:MokkiPage}" />
-
+    ContentTemplate="{DataTemplate views:MokkiPage}" />
 </Shell>
