@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Estä omien asetusten karkaaminen GitHubiin
+appsettings.json

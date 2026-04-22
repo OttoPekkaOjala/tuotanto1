@@ -1,7 +1,9 @@
-﻿namespace tuotanto1
-{
+﻿namespace tuotanto1;
+
+    
     public partial class MainPage : ContentPage
     {
+        
         int count = 0;
 
         public MainPage()
