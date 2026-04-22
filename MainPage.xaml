@@ -55,6 +55,9 @@
                     CornerRadius="6"
                     HeightRequest="40"
                     Clicked="Raportit_Clicked" />
+            
+            <Button Text="Testaa tietokanta" Clicked="TestaaDB_Clicked" />
+
 
         </VerticalStackLayout>
 
