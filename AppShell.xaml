@@ -3,12 +3,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:tuotanto1.Views"
+    xmlns:local="clr-namespace:tuotanto1"
     x:Class="tuotanto1.AppShell">
 
+    
     <ShellContent
-    Title="Asiakkaat"
-    ContentTemplate="{DataTemplate views:AsiakasPage}" />
+        Title="Etusivu"
+        ContentTemplate="{DataTemplate local:MainPage}" />
+
     <ShellContent
-    Title="Mökit"
-    ContentTemplate="{DataTemplate views:MokkiPage}" />
+        Title="Asiakkaat"
+        ContentTemplate="{DataTemplate views:AsiakasPage}" />
+
+    <ShellContent
+        Title="Mökit"
+        ContentTemplate="{DataTemplate views:MokkiPage}" />
+
 </Shell>
