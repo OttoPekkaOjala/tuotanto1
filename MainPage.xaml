@@ -1,37 +1,54 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="tuotanto1.MainPage"
+             BackgroundColor="#1E1E1E"
              Title="Etusivu">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
+    <VerticalStackLayout Padding="30" Spacing="25">
 
         <Label Text="Tuotantojärjestelmä"
-               FontSize="28"
+               FontSize="32"
+               TextColor="White"
                HorizontalOptions="Center" />
 
         <Button Text="Asiakkaat"
-                FontSize="20"
-                HeightRequest="60"
+                FontSize="18"
+                BackgroundColor="#2D2D2D"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="55"
                 Clicked="Asiakkaat_Clicked" />
 
         <Button Text="Mökit"
-                FontSize="20"
-                HeightRequest="60"
+                FontSize="18"
+                BackgroundColor="#2D2D2D"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="55"
                 Clicked="Mokit_Clicked" />
 
         <Button Text="Varaukset"
-                FontSize="20"
-                HeightRequest="60"
+                FontSize="18"
+                BackgroundColor="#2D2D2D"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="55"
                 Clicked="Varaukset_Clicked" />
 
         <Button Text="Laskut"
-                FontSize="20"
-                HeightRequest="60"
+                FontSize="18"
+                BackgroundColor="#2D2D2D"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="55"
                 Clicked="Laskut_Clicked" />
 
         <Button Text="Raportit"
-                FontSize="20"
-                HeightRequest="60"
+                FontSize="18"
+                BackgroundColor="#2D2D2D"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="55"
                 Clicked="Raportit_Clicked" />
 
     </VerticalStackLayout>
