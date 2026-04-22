@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace tuotanto1.Data
 {
-    internal class Database
+    public static class Database
     {
+       
     }
 }
