@@ -5,6 +5,7 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+        TestDatabase();
     }
 
     private async void Asiakkaat_Clicked(object sender, EventArgs e)
@@ -31,4 +32,16 @@ public partial class MainPage : ContentPage
     {
         await Navigation.PushAsync(new Views.RaportitPage());
     }
+
+    private async void TestDatabase()
+    {
+        var db = new DatabaseService();
+        bool ok = await db.TestConnectionAsync();
+
+        if (ok)
+            await DisplayAlert("Tietokanta", "Yhteys toimii!", "OK");
+        else
+            await DisplayAlert("Tietokanta", "Yhteys EI toimi", "OK");
+    }
+
 }
