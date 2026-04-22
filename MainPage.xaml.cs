@@ -40,13 +40,18 @@ public partial class MainPage : ContentPage
 
     private async Task TestDatabase()
     {
-        var db = new DatabaseService();
-        bool ok = await db.TestConnectionAsync();
+        try
+        {
+            var db = new DatabaseService();
+            bool ok = await db.TestConnectionAsync();
 
-        if (ok)
-            await DisplayAlert("Tietokanta", "Yhteys toimii!", "OK");
-        else
-            await DisplayAlert("Tietokanta", "Yhteys EI toimi", "OK");
+            await DisplayAlert("Tietokanta", ok ? "Yhteys toimii!" : "Yhteys EI toimi", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Virhe", ex.Message, "OK");
+        }
     }
+
 
 }

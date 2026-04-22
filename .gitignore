@@ -364,3 +364,5 @@ FodyWeavers.xsd
 
 # Estä omien asetusten karkaaminen GitHubiin
 appsettings.json
+
+DatabaseConfig.cs
