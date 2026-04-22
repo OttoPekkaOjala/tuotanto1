@@ -2,11 +2,82 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="tuotanto1.Views.VarausPage"
-             Title="VarausPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Varaukset">
+
+    <Grid ColumnDefinitions="180, *">
+
+        <!-- Vasen valikkopaneeli -->
+        <VerticalStackLayout BackgroundColor="{StaticResource PanelDark}"
+                             Padding="15"
+                             Spacing="12">
+
+            <Label Text="Valikko"
+                   FontSize="20"
+                   TextColor="{StaticResource TextLight}"
+                   Margin="0,0,0,10" />
+
+            <Button Text="Etusivu"
+                    Clicked="Etusivu_Clicked" />
+
+            <Button Text="Asiakkaat"
+                    Clicked="Asiakkaat_Clicked" />
+
+            <Button Text="Mökit"
+                    Clicked="Mokit_Clicked" />
+
+            <Button Text="Varaukset"
+                    Clicked="Varaukset_Clicked" />
+
+            <Button Text="Laskut"
+                    Clicked="Laskut_Clicked" />
+
+            <Button Text="Raportit"
+                    Clicked="Raportit_Clicked" />
+
+        </VerticalStackLayout>
+
+        <!-- Oikea sisältöalue -->
+        <VerticalStackLayout Grid.Column="1"
+                             Padding="25"
+                             Spacing="20">
+
+            <Label Text="Varausten hallinta"
+                   FontSize="26"
+                   TextColor="{StaticResource TextLight}" />
+
+            <Label Text="Tässä näet kaikki varaukset."
+                   FontSize="16"
+                   TextColor="#CCCCCC" />
+
+            <!-- Lista varauksista -->
+            <CollectionView ItemsSource="{Binding Varaukset}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="{StaticResource PanelDark}"
+                               CornerRadius="8"
+                               Padding="12"
+                               Margin="0,5">
+
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="{Binding AsiakasNimi}"
+                                       FontSize="18" />
+                                <Label Text="{Binding MokkiNimi}"
+                                       FontSize="14"
+                                       TextColor="#BBBBBB" />
+                                <Label Text="{Binding AlkuPvm, StringFormat='Alkaa: {0:dd.MM.yyyy}'}"
+                                       FontSize="14"
+                                       TextColor="#BBBBBB" />
+                                <Label Text="{Binding LoppuPvm, StringFormat='Päättyy: {0:dd.MM.yyyy}'}"
+                                       FontSize="14"
+                                       TextColor="#BBBBBB" />
+                            </VerticalStackLayout>
+
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

@@ -4,52 +4,74 @@
              BackgroundColor="#1E1E1E"
              Title="Etusivu">
 
-    <VerticalStackLayout Padding="30" Spacing="25">
+    <Grid ColumnDefinitions="180, *">
 
-        <Label Text="Tuotantojärjestelmä"
-               FontSize="32"
-               TextColor="White"
-               HorizontalOptions="Center" />
+        <!-- Vasen valikkopaneeli -->
+        <VerticalStackLayout BackgroundColor="#252525"
+                             Padding="15"
+                             Spacing="12">
 
-        <Button Text="Asiakkaat"
-                FontSize="18"
-                BackgroundColor="#2D2D2D"
-                TextColor="White"
-                CornerRadius="8"
-                HeightRequest="55"
-                Clicked="Asiakkaat_Clicked" />
+            <Label Text="Valikko"
+                   FontSize="20"
+                   TextColor="White"
+                   Margin="0,0,0,10" />
 
-        <Button Text="Mökit"
-                FontSize="18"
-                BackgroundColor="#2D2D2D"
-                TextColor="White"
-                CornerRadius="8"
-                HeightRequest="55"
-                Clicked="Mokit_Clicked" />
+            <Button Text="Asiakkaat"
+                    FontSize="15"
+                    BackgroundColor="#333333"
+                    TextColor="White"
+                    CornerRadius="6"
+                    HeightRequest="40"
+                    Clicked="Asiakkaat_Clicked" />
 
-        <Button Text="Varaukset"
-                FontSize="18"
-                BackgroundColor="#2D2D2D"
-                TextColor="White"
-                CornerRadius="8"
-                HeightRequest="55"
-                Clicked="Varaukset_Clicked" />
+            <Button Text="Mökit"
+                    FontSize="15"
+                    BackgroundColor="#333333"
+                    TextColor="White"
+                    CornerRadius="6"
+                    HeightRequest="40"
+                    Clicked="Mokit_Clicked" />
 
-        <Button Text="Laskut"
-                FontSize="18"
-                BackgroundColor="#2D2D2D"
-                TextColor="White"
-                CornerRadius="8"
-                HeightRequest="55"
-                Clicked="Laskut_Clicked" />
+            <Button Text="Varaukset"
+                    FontSize="15"
+                    BackgroundColor="#333333"
+                    TextColor="White"
+                    CornerRadius="6"
+                    HeightRequest="40"
+                    Clicked="Varaukset_Clicked" />
 
-        <Button Text="Raportit"
-                FontSize="18"
-                BackgroundColor="#2D2D2D"
-                TextColor="White"
-                CornerRadius="8"
-                HeightRequest="55"
-                Clicked="Raportit_Clicked" />
+            <Button Text="Laskut"
+                    FontSize="15"
+                    BackgroundColor="#333333"
+                    TextColor="White"
+                    CornerRadius="6"
+                    HeightRequest="40"
+                    Clicked="Laskut_Clicked" />
 
-    </VerticalStackLayout>
+            <Button Text="Raportit"
+                    FontSize="15"
+                    BackgroundColor="#333333"
+                    TextColor="White"
+                    CornerRadius="6"
+                    HeightRequest="40"
+                    Clicked="Raportit_Clicked" />
+
+        </VerticalStackLayout>
+
+        <!-- Oikea sisältöalue -->
+        <VerticalStackLayout Grid.Column="1"
+                             Padding="30"
+                             Spacing="20">
+
+            <Label Text="Tervetuloa järjestelmään"
+                   FontSize="28"
+                   TextColor="White" />
+
+            <Label Text="Valitse toiminto vasemmalta."
+                   FontSize="16"
+                   TextColor="#CCCCCC" />
+
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>
