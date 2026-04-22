@@ -1,11 +1,38 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="tuotanto1.MainPage">
+             x:Class="tuotanto1.MainPage"
+             Title="Etusivu">
 
-    <VerticalStackLayout Padding="20">
-        <Label Text="Tervetuloa mökkivarausjärjestelmään"
-               FontSize="24"
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <Label Text="Tuotantojärjestelmä"
+               FontSize="28"
                HorizontalOptions="Center" />
-    </VerticalStackLayout>
 
+        <Button Text="Asiakkaat"
+                FontSize="20"
+                HeightRequest="60"
+                Clicked="Asiakkaat_Clicked" />
+
+        <Button Text="Mökit"
+                FontSize="20"
+                HeightRequest="60"
+                Clicked="Mokit_Clicked" />
+
+        <Button Text="Varaukset"
+                FontSize="20"
+                HeightRequest="60"
+                Clicked="Varaukset_Clicked" />
+
+        <Button Text="Laskut"
+                FontSize="20"
+                HeightRequest="60"
+                Clicked="Laskut_Clicked" />
+
+        <Button Text="Raportit"
+                FontSize="20"
+                HeightRequest="60"
+                Clicked="Raportit_Clicked" />
+
+    </VerticalStackLayout>
 </ContentPage>
