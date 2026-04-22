@@ -5,7 +5,12 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-        TestDatabase();
+        
+    }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await TestDatabase();
     }
 
     private async void Asiakkaat_Clicked(object sender, EventArgs e)
@@ -33,7 +38,7 @@ public partial class MainPage : ContentPage
         await Navigation.PushAsync(new Views.RaportitPage());
     }
 
-    private async void TestDatabase()
+    private async Task TestDatabase()
     {
         var db = new DatabaseService();
         bool ok = await db.TestConnectionAsync();
