@@ -1,35 +1,34 @@
 ﻿namespace tuotanto1;
 
-    
-    public partial class MainPage : ContentPage
+public partial class MainPage : ContentPage
+{
+    public MainPage()
     {
-        
-        int count = 0;
-
-        public MainPage()
-        {
-            InitializeComponent();
-<<<<<<< HEAD
-            /// Muutos
-            /// toinen
-        }
-
-
-=======
-        }
-
->>>>>>> b5b354666e3996511565ccddb650af3ac1cf34d7
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+        InitializeComponent();
     }
 
+    private async void Asiakkaat_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Views.AsiakasPage());
+    }
+
+    private async void Mokit_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Views.MokkiPage());
+    }
+
+    private async void Varaukset_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Views.VarausPage());
+    }
+
+    private async void Laskut_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Views.LaskuPage());
+    }
+
+    private async void Raportit_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Views.RaportitPage());
+    }
 }
