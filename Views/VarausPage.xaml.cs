@@ -5,5 +5,36 @@ public partial class VarausPage : ContentPage
 	public VarausPage()
 	{
 		InitializeComponent();
+
 	}
+    private async void Asiakkaat_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AsiakasPage());
+    }
+
+    private async void Mokit_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MokkiPage());
+    }
+
+    private async void Varaukset_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new VarausPage());
+    }
+
+    private async void Laskut_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new LaskuPage());
+    }
+
+    private async void Raportit_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new RaportitPage());
+    }
+    private async void Etusivu_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync(); // palaa etusivulle
+    }
+
+
 }
