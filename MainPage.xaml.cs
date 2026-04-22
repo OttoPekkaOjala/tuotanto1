@@ -10,7 +10,6 @@ public partial class MainPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await TestDatabase();
     }
 
     private async void Asiakkaat_Clicked(object sender, EventArgs e)
@@ -37,6 +36,11 @@ public partial class MainPage : ContentPage
     {
         await Navigation.PushAsync(new Views.RaportitPage());
     }
+    private async void TestaaDB_Clicked(object sender, EventArgs e)
+    {
+        await TestDatabase();
+    }
+
 
     private async Task TestDatabase()
     {
