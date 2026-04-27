@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -19,10 +18,10 @@
                     CornerRadius="6">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
-                        <VisualStateGroup>
-                            <VisualState>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#333333"/>
+                                    <Setter Property="BackgroundColor" Value="#333333" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -38,10 +37,10 @@
                     CornerRadius="6">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
-                        <VisualStateGroup>
-                            <VisualState>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#333333"/>
+                                    <Setter Property="BackgroundColor" Value="#333333" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -57,10 +56,10 @@
                     CornerRadius="6">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
-                        <VisualStateGroup>
-                            <VisualState>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#333333"/>
+                                    <Setter Property="BackgroundColor" Value="#333333" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -76,10 +75,10 @@
                     CornerRadius="6">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
-                        <VisualStateGroup>
-                            <VisualState>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#333333"/>
+                                    <Setter Property="BackgroundColor" Value="#333333" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -95,10 +94,10 @@
                     CornerRadius="6">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
-                        <VisualStateGroup>
-                            <VisualState>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#333333"/>
+                                    <Setter Property="BackgroundColor" Value="#333333" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -116,13 +115,13 @@
             <Label Text="Tervetuloa Vuokraamo-sovellukseen"
                    TextColor="White"
                    FontSize="28"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center" />
 
             <Label Text="Valitse toiminto vasemmalta"
                    TextColor="#CCCCCC"
                    FontSize="16"
                    HorizontalOptions="Center"
-                   Margin="0,10,0,0"/>
+                   Margin="0,10,0,0" />
 
         </VerticalStackLayout>
 
