@@ -1,18 +1,27 @@
 ﻿using System.Collections.ObjectModel;
 using tuotanto1.Models;
+using tuotanto1.Services;
 
-namespace tuotanto1.ViewModels;
 
-public class AsiakasViewModels
+namespace tuotanto1.ViewModels
 {
-    public ObservableCollection<Asiakas> Asiakkaat { get; set; }
-
-    public AsiakasViewModels()
+    public class AsiakasViewModel
     {
-        Asiakkaat = new ObservableCollection<Asiakas>
+        public ObservableCollection<Asiakas> Asiakkaat { get; set; } = new();
+        private readonly AsiakasService _service = new();
+
+        public async Task LataaAsiakkaatAsync()
         {
-            new Asiakas { AsiakasId = 1, Etunimi = "Jarmo", Sukunimi = "Jokinen", Email = "jamppa@example.com", Puhelinnro = "0401234567" },
-            new Asiakas { AsiakasId = 2, Etunimi = "Liisa", Sukunimi = "Lahtinen", Email = "liisa@example.com", Puhelinnro = "0509876543" }
-        };
+            var lista = await _service.HaeKaikkiAsiakkaatAsync();
+            Asiakkaat.Clear();
+
+            foreach (var a in lista)
+                Asiakkaat.Add(a);
+        }
+
+        public async Task<bool> LisaaAsiakasAsync(Asiakas asiakas)
+        {
+            return await _service.LisaaAsiakasAsync(asiakas);
+        }
     }
 }

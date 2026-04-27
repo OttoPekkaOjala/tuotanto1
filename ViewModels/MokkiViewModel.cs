@@ -1,40 +1,28 @@
 ﻿using System.Collections.ObjectModel;
 using tuotanto1.Models;
+using tuotanto1.Services;
 
-namespace tuotanto1.ViewModels;
 
-public class MokkiViewModel
+
+namespace tuotanto1.ViewModels
 {
-    public ObservableCollection<Mokki> Mokit { get; set; }
-
-    public MokkiViewModel()
+    public class MokkiViewModel
     {
-        Mokit = new ObservableCollection<Mokki>
+        public ObservableCollection<Mokki> Mokit { get; set; } = new();
+        private readonly MokkiService _service = new();
+
+        public async Task LataaMokitAsync()
         {
-            new Mokki
-            {
-                MokkiId = 1,
-                AlueId = 1,
-                Postinro = "70100",
-                Mokkinimi = "Hirsihuvila",
-                Katuosoite = "Metsäpolku 5",
-                Hinta = 120,
-                Kuvaus = "Tunnelmallinen hirsimökki järven rannalla",
-                Henkilomaara = 4,
-                Varustelu = "Sauna, takka, wifi"
-            },
-            new Mokki
-            {
-                MokkiId = 2,
-                AlueId = 1,
-                Postinro = "70100",
-                Mokkinimi = "Rantamökki",
-                Katuosoite = "Rantatie 12",
-                Hinta = 150,
-                Kuvaus = "Rantamökki omalla laiturilla",
-                Henkilomaara = 6,
-                Varustelu = "Sauna, vene, grillikatos"
-            }
-        };
+            var lista = await _service.HaeKaikkiMokitAsync();
+            Mokit.Clear();
+
+            foreach (var m in lista)
+                Mokit.Add(m);
+        }
+
+        public async Task<bool> LisaaMokkiAsync(Mokki mokki)
+        {
+            return await _service.LisaaMokkiAsync(mokki);
+        }
     }
 }

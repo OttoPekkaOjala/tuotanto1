@@ -1,8 +1,9 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:tuotanto1"
              x:Class="tuotanto1.App">
+
     <Application.Resources>
         <ResourceDictionary>
 
@@ -29,16 +30,21 @@
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
+
+                            <!-- Normaali tila -->
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource ButtonDark}" />
                                 </VisualState.Setters>
                             </VisualState>
+
+                            <!-- Painettu tila -->
                             <VisualState x:Name="Pressed">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource ButtonDarkPressed}" />
                                 </VisualState.Setters>
                             </VisualState>
+
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
@@ -51,5 +57,4 @@
 
         </ResourceDictionary>
     </Application.Resources>
-
 </Application>

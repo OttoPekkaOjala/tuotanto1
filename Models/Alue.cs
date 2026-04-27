@@ -10,4 +10,6 @@ public class Alue
 {
     public int AlueId { get; set; }
     public string Nimi { get; set; }
+
+    public string Kuvaus { get; set; }
 }

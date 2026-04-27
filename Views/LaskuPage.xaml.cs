@@ -1,9 +1,20 @@
-namespace tuotanto1.Views;
+using tuotanto1.ViewModels;
 
-public partial class LaskuPage : ContentPage
+namespace tuotanto1.Views
 {
-	public LaskuPage()
-	{
-		InitializeComponent();
-	}
+    public partial class LaskuPage : ContentPage
+    {
+        private readonly LaskuViewModel _vm = new();
+
+        public LaskuPage()
+        {
+            InitializeComponent();
+            BindingContext = _vm;
+        }
+
+        private async void Lataa_Clicked(object sender, EventArgs e)
+        {
+            await _vm.LataaLaskutAsync();
+        }
+    }
 }

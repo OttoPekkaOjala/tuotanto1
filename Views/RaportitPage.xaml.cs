@@ -1,9 +1,22 @@
-namespace tuotanto1.Views;
+using tuotanto1.ViewModels;
 
-public partial class RaportitPage : ContentPage
+namespace tuotanto1.Views
 {
-	public RaportitPage()
-	{
-		InitializeComponent();
-	}
+    public partial class RaportitPage : ContentPage
+    {
+        private readonly RaportointiViewModel _viewModel;
+
+        public RaportitPage()
+        {
+            InitializeComponent();
+            _viewModel = new RaportointiViewModel();
+            BindingContext = _viewModel;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await _viewModel.LataaRaportitAsync();
+        }
+    }
 }

@@ -1,83 +1,79 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="tuotanto1.Views.VarausPage"
-             Title="Varaukset">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="tuotanto1.Views.VarausPage"
+    BackgroundColor="#121212">
 
-    <Grid ColumnDefinitions="180, *">
+    <Grid ColumnDefinitions="200, *" Padding="10">
 
-        <!-- Vasen valikkopaneeli -->
-        <VerticalStackLayout BackgroundColor="{StaticResource PanelDark}"
-                             Padding="15"
-                             Spacing="12">
+        <!-- VASEN VALIKKO -->
+        <VerticalStackLayout Spacing="12" Grid.Column="0">
 
-            <Label Text="Valikko"
-                   FontSize="20"
-                   TextColor="{StaticResource TextLight}"
-                   Margin="0,0,0,10" />
+            <Button Text="Lataa varaukset"
+                    Clicked="Lataa_Clicked"
+                    BackgroundColor="#1E1E1E"
+                    TextColor="White"
+                    CornerRadius="6">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#333333"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
 
-            <Button Text="Etusivu"
-                    Clicked="Etusivu_Clicked" />
+            </Button>
 
-            <Button Text="Asiakkaat"
-                    Clicked="Asiakkaat_Clicked" />
+            <Button Text="Lisää varaus"
+                    Clicked="Lisaa_Clicked"
+                    BackgroundColor="#1E1E1E"
+                    TextColor="White"
+                    CornerRadius="6">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#333333"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
 
-            <Button Text="Mökit"
-                    Clicked="Mokit_Clicked" />
-
-            <Button Text="Varaukset"
-                    Clicked="Varaukset_Clicked" />
-
-            <Button Text="Laskut"
-                    Clicked="Laskut_Clicked" />
-
-            <Button Text="Raportit"
-                    Clicked="Raportit_Clicked" />
-
-        </VerticalStackLayout>
-
-        <!-- Oikea sisältöalue -->
-        <VerticalStackLayout Grid.Column="1"
-                             Padding="25"
-                             Spacing="20">
-
-            <Label Text="Varausten hallinta"
-                   FontSize="26"
-                   TextColor="{StaticResource TextLight}" />
-
-            <Label Text="Tässä näet kaikki varaukset."
-                   FontSize="16"
-                   TextColor="#CCCCCC" />
-
-            <!-- Lista varauksista -->
-            <CollectionView ItemsSource="{Binding Varaukset}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BackgroundColor="{StaticResource PanelDark}"
-                               CornerRadius="8"
-                               Padding="12"
-                               Margin="0,5">
-
-                            <VerticalStackLayout Spacing="4">
-                                <Label Text="{Binding AsiakasNimi}"
-                                       FontSize="18" />
-                                <Label Text="{Binding MokkiNimi}"
-                                       FontSize="14"
-                                       TextColor="#BBBBBB" />
-                                <Label Text="{Binding AlkuPvm, StringFormat='Alkaa: {0:dd.MM.yyyy}'}"
-                                       FontSize="14"
-                                       TextColor="#BBBBBB" />
-                                <Label Text="{Binding LoppuPvm, StringFormat='Päättyy: {0:dd.MM.yyyy}'}"
-                                       FontSize="14"
-                                       TextColor="#BBBBBB" />
-                            </VerticalStackLayout>
-
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            </Button>
 
         </VerticalStackLayout>
+
+        <!-- OIKEA LISTA -->
+        <CollectionView Grid.Column="1"
+                        ItemsSource="{Binding Varaukset}"
+                        Margin="10">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#1E1E1E"
+                           BorderColor="#333333"
+                           CornerRadius="8"
+                           Padding="10"
+                           Margin="0,0,0,10">
+
+                        <VerticalStackLayout>
+                            <Label Text="Varaus" TextColor="White" FontSize="18"/>
+                            <Label Text="{Binding VarausId}" TextColor="#CCCCCC"/>
+                            <Label Text="{Binding VarattuAlkupvm}" TextColor="#888888" FontSize="12"/>
+                        </VerticalStackLayout>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
 
     </Grid>
 </ContentPage>

@@ -1,40 +1,33 @@
-namespace tuotanto1.Views;
+using tuotanto1.ViewModels;
 
-public partial class VarausPage : ContentPage
+namespace tuotanto1.Views
 {
-	public VarausPage()
-	{
-		InitializeComponent();
-
-	}
-    private async void Asiakkaat_Clicked(object sender, EventArgs e)
+    public partial class VarausPage : ContentPage
     {
-        await Navigation.PushAsync(new AsiakasPage());
-    }
+        private readonly VarausViewModel _vm = new();
 
-    private async void Mokit_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new MokkiPage());
-    }
+        public VarausPage()
+        {
+            InitializeComponent();
+            BindingContext = _vm;
+        }
 
-    private async void Varaukset_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new VarausPage());
-    }
+        private async void Lataa_Clicked(object sender, EventArgs e)
+        {
+            await _vm.LataaVarauksetAsync();
+        }
 
-    private async void Laskut_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new LaskuPage());
-    }
+        private async void Lisaa_Clicked(object sender, EventArgs e)
+        {
+            await _vm.LisaaVarausAsync(new Models.Varaus
+            {
+                AsiakasId = 1,
+                MokkiId = 1,
+                VarattuAlkupvm = DateTime.Now,
+                VarattuLoppupvm = DateTime.Now.AddDays(3)
+            });
 
-    private async void Raportit_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new RaportitPage());
+            await _vm.LataaVarauksetAsync();
+        }
     }
-    private async void Etusivu_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PopAsync(); // palaa etusivulle
-    }
-
-
 }

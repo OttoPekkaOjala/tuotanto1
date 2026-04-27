@@ -5,10 +5,10 @@
         public App()
         {
             InitializeComponent();
-
-            MainPage = new AppShell();
+            MainPage = new Views.MainPage();
 
         }
+
     }
 }
 

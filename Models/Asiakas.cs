@@ -14,7 +14,7 @@ public class Asiakas
     public string Lahiosoite { get; set; }
     public string Postinumero { get; set; }
     public string Email { get; set; }
-    public string Puhelinnro { get; set; }
+    public string Puhelinnumero { get; set; }
 
-    public string Nimi => $"{Etunimi} {Sukunimi}";
+    
 }

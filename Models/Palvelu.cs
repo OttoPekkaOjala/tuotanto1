@@ -12,6 +12,7 @@ public class Palvelu
     public int AlueId { get; set; }
     public string Nimi { get; set; }
     public string Kuvaus { get; set; }
-    public double Hinta { get; set; }
-    public double Alv { get; set; }
+    public decimal Hinta { get; set; }
+
+    public decimal Alv { get; set; }
 }
