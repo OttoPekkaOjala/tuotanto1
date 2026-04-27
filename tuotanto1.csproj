@@ -41,6 +41,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\AsiakasLomakePage.xaml.cs">
+	    <DependentUpon>AsiakasLomakePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<MauiXaml Update="Views\AsiakasPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
@@ -49,6 +55,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\MokkiPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AsiakasLomakePage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\RaportitPage.xaml">
 			<Generator>MSBuild:Compile</Generator>

@@ -2,37 +2,24 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="tuotanto1.Views.AsiakasPage"
-    BackgroundColor="#121212">
+    x:Class="tuotanto1.Views.AsiakasPage">
 
-    <VerticalStackLayout Padding="20" Spacing="12">
+    <VerticalStackLayout Padding="20">
 
-        <Label Text="Asiakkaat"
-               FontSize="28"
-               TextColor="White"
-               HorizontalOptions="Center" />
+        <Button Text="Lisää asiakas"
+                Clicked="LisaaAsiakas_Clicked" />
 
-        <Button Text="Lisää uusi asiakas"
-                BackgroundColor="#1E1E1E"
-                TextColor="White"
-                CornerRadius="6">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#333333" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#444444" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
+        <CollectionView x:Name="AsiakasLista">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Padding="10">
+                        <Label Text="{Binding Etunimi}" FontSize="20" />
+                        <Label Text="{Binding Sukunimi}" FontSize="20" />
+                        <Label Text="{Binding Email}" FontSize="14" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
     </VerticalStackLayout>
 </ContentPage>
