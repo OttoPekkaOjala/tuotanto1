@@ -1,49 +1,38 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:tuotanto1.ViewModels"
-             x:Class="tuotanto1.Views.RaportitPage"
-             Title="Raportit">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="tuotanto1.Views.RaportitPage"
+    BackgroundColor="#121212">
 
-    <ContentPage.BindingContext>
-        <viewmodels:RaportointiViewModel />
-    </ContentPage.BindingContext>
+    <VerticalStackLayout Padding="20" Spacing="12">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
-
-        <Label Text="Laskuraportti"
-               FontSize="24"
-               FontAttributes="Bold"
+        <Label Text="Raportit"
+               FontSize="28"
+               TextColor="White"
                HorizontalOptions="Center" />
 
-        <CollectionView ItemsSource="{Binding Laskut}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="#cccccc" Padding="10" Margin="5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding LaskuId}" FontAttributes="Bold" />
-                            <Label Text="{Binding Summa, StringFormat='Summa: {0:C}'}" />
-                            <Label Text="{Binding Alv, StringFormat='ALV: {0:C}'}" />
-                            <Label Text="{Binding Maksettu, StringFormat='Maksettu: {0}'}" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-        <Frame BorderColor="#333" Padding="10" Margin="10">
-            <Label Text="{Binding Kokonaissumma, StringFormat='Kokonaissumma: {0:C}'}"
-                   FontSize="18"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center" />
-        </Frame>
-
-        <Button Text="Päivitä raportit"
-                Command="{Binding LataaRaportitAsync}"
-                BackgroundColor="#0078D7"
+        <Button Text="Näytä raportit"
+                BackgroundColor="#1E1E1E"
                 TextColor="White"
-                CornerRadius="8"
-                Padding="10" />
+                CornerRadius="6">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#333333" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#444444" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
     </VerticalStackLayout>
 </ContentPage>

@@ -9,29 +9,45 @@
     Shell.FlyoutBackgroundColor="#1E1E1E"
     Shell.FlyoutBehavior="Flyout">
 
-    <!-- SOVELLUKSEN VALIKKO -->
+    <FlyoutItem Title="Etusivu" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Etusivu"
+                  Route="MainPage"
+                  ContentTemplate="{DataTemplate views:MainPage}" />
+    </FlyoutItem>
+
+
+    <!-- ASIAKKAAT -->
     <FlyoutItem Title="Asiakkaat" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Asiakkaat"
+                      Route="Asiakkaat"
                       ContentTemplate="{DataTemplate views:AsiakasPage}" />
     </FlyoutItem>
 
+    <!-- MÖKIT -->
     <FlyoutItem Title="Mökit" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Mökit"
+                      Route="Mokit"
                       ContentTemplate="{DataTemplate views:MokkiPage}" />
     </FlyoutItem>
 
+    <!-- VARAUKSET -->
     <FlyoutItem Title="Varaukset" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Varaukset"
+                      Route="Varaukset"
                       ContentTemplate="{DataTemplate views:VarausPage}" />
     </FlyoutItem>
 
+    <!-- LASKUT -->
     <FlyoutItem Title="Laskut" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Laskut"
+                      Route="Laskut"
                       ContentTemplate="{DataTemplate views:LaskuPage}" />
     </FlyoutItem>
 
+    <!-- RAPORTIT -->
     <FlyoutItem Title="Raportit" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Raportit"
+                      Route="Raportit"
                       ContentTemplate="{DataTemplate views:RaportitPage}" />
     </FlyoutItem>
 

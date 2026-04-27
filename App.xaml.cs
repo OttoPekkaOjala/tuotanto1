@@ -1,14 +1,12 @@
-﻿namespace tuotanto1
+﻿namespace tuotanto1;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
-            MainPage = new Views.MainPage();
+        InitializeComponent();
 
-        }
-
+        // Käynnistä sovellus Shellin kautta
+        MainPage = new AppShell();
     }
 }
-

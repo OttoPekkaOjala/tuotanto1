@@ -1,79 +1,38 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="tuotanto1.Views.MokkiPage"
     BackgroundColor="#121212">
 
-    <Grid ColumnDefinitions="200, *" Padding="10">
+    <VerticalStackLayout Padding="20" Spacing="12">
 
-        <!-- VASEN VALIKKO -->
-        <VerticalStackLayout Spacing="12" Grid.Column="0">
+        <Label Text="Mökit"
+               FontSize="28"
+               TextColor="White"
+               HorizontalOptions="Center" />
 
-            <Button Text="Lataa mökit"
-                    Clicked="Lataa_Clicked"
-                    BackgroundColor="#1E1E1E"
-                    TextColor="White"
-                    CornerRadius="6">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup>
-                            <VisualState>
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#333333"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
+        <Button Text="Lisää uusi mökki"
+                BackgroundColor="#1E1E1E"
+                TextColor="White"
+                CornerRadius="6">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#333333" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#444444" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
-            </Button>
-
-            <Button Text="Lisää mökki"
-                    Clicked="Lisaa_Clicked"
-                    BackgroundColor="#1E1E1E"
-                    TextColor="White"
-                    CornerRadius="6">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup>
-                            <VisualState>
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#333333"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-
-            </Button>
-
-        </VerticalStackLayout>
-
-        <!-- OIKEA LISTA -->
-        <CollectionView Grid.Column="1"
-                        ItemsSource="{Binding Mokit}"
-                        Margin="10">
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BackgroundColor="#1E1E1E"
-                           BorderColor="#333333"
-                           CornerRadius="8"
-                           Padding="10"
-                           Margin="0,0,0,10">
-
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Nimi}" TextColor="White" FontSize="18"/>
-                            <Label Text="{Binding Kuvaus}" TextColor="#CCCCCC"/>
-                            <Label Text="{Binding Hinta}" TextColor="#888888" FontSize="12"/>
-                        </VerticalStackLayout>
-
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
-        </CollectionView>
-
-    </Grid>
+    </VerticalStackLayout>
 </ContentPage>

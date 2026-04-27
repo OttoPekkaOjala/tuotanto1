@@ -1,4 +1,7 @@
-﻿namespace tuotanto1.Views
+﻿using System;
+using Microsoft.Maui.Controls;
+
+namespace tuotanto1.Views
 {
     public partial class MainPage : ContentPage
     {
@@ -14,7 +17,7 @@
 
         private async void Mokit_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//Mökit");
+            await Shell.Current.GoToAsync("//Mokit");
         }
 
         private async void Varaukset_Clicked(object sender, EventArgs e)
