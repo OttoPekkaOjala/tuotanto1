@@ -10,7 +10,8 @@ public class Mokki
 {
     public int MokkiId { get; set; }
     public int AlueId { get; set; }
-    public string Postinro { get; set; }
+    public string Nimi { get; set; }
+    public string Postinumero { get; set; }
     public string Mokkinimi { get; set; }
     public string Katuosoite { get; set; }
     public double Hinta { get; set; }
