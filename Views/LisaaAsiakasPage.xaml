@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:tuotanto1.ViewModels"
+    x:Class="tuotanto1.Views.LisaaAsiakasPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:LisaaAsiakasViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20">
+
+        <Entry Placeholder="Etunimi" Text="{Binding Etunimi}" />
+        <Entry Placeholder="Sukunimi" Text="{Binding Sukunimi}" />
+        <Entry Placeholder="Sähköposti" Text="{Binding Sahkoposti}" />
+        <Entry Placeholder="Puhelin" Text="{Binding Puhelinnumero}" />
+        <Entry Placeholder="Postinumero" Text="{Binding Postinumero}" />
+
+
+        <Button Text="Tallenna"
+                Command="{Binding TallennaAsiakasCommand}" />
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -47,6 +47,9 @@
 		<MauiXaml Update="Views\LaskuPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\LisaaAsiakasPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\MokkiPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
