@@ -6,12 +6,11 @@ namespace tuotanto1.Services
 {
     public class MokkiService
     {
-        private readonly Database _db = new();
-
         public async Task<List<Mokki>> HaeKaikkiMokitAsync()
         {
             var lista = new List<Mokki>();
-            using var conn = await _db.GetConnectionAsync();
+
+            using var conn = Database.GetConnection(); // static call
             var cmd = new MySqlCommand("SELECT * FROM mokki", conn);
             using var reader = await cmd.ExecuteReaderAsync();
 
@@ -19,22 +18,24 @@ namespace tuotanto1.Services
             {
                 lista.Add(new Mokki
                 {
-                    MokkiId = reader.GetInt32("mokki_id"),
-                    AlueId = reader.GetInt32("alue_id"),
-                    Nimi = reader.GetString("nimi"),
-                    Kuvaus = reader.GetString("kuvaus"),
-                    Katuosoite = reader.GetString("katuosoite"),
-                    Postinumero = reader.GetString("postinumero"),
-                    Henkilomaara = reader.GetInt32("henkilomaara"),
-                    Hinta = reader.GetDecimal("hinta")
+                    MokkiId = reader.GetInt32(reader.GetOrdinal("mokki_id")),
+                    AlueId = reader.GetInt32(reader.GetOrdinal("alue_id")),
+                    Nimi = reader.GetString(reader.GetOrdinal("nimi")),
+                    Kuvaus = reader.GetString(reader.GetOrdinal("kuvaus")),
+                    Katuosoite = reader.GetString(reader.GetOrdinal("katuosoite")),
+                    Postinumero = reader.GetString(reader.GetOrdinal("postinumero")),
+                    Henkilomaara = reader.GetInt32(reader.GetOrdinal("henkilomaara")),
+                    Hinta = reader.GetDecimal(reader.GetOrdinal("hinta"))
                 });
             }
+
             return lista;
         }
 
         public async Task<bool> LisaaMokkiAsync(Mokki mokki)
         {
-            using var conn = await _db.GetConnectionAsync();
+            using var conn = Database.GetConnection(); // static call
+
             var cmd = new MySqlCommand(
                 "INSERT INTO mokki (alue_id, nimi, kuvaus, katuosoite, postinumero, henkilomaara, hinta) " +
                 "VALUES (@alue_id, @nimi, @kuvaus, @katuosoite, @postinumero, @henkilomaara, @hinta)", conn);

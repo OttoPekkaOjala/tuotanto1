@@ -6,6 +6,7 @@ using tuotanto1.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using tuotanto1.Services;
+using tuotanto1.ViewModels;
 public class AsiakasViewModel : BaseViewModel
 {
     public ObservableCollection<Asiakas> Asiakkaat { get; set; } = new();

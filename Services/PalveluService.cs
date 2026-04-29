@@ -6,12 +6,11 @@ namespace tuotanto1.Services
 {
     public class PalveluService
     {
-        private readonly Database _db = new();
-
         public async Task<List<Palvelu>> HaeKaikkiPalvelutAsync()
         {
             var lista = new List<Palvelu>();
-            using var conn = await _db.GetConnectionAsync();
+
+            using var conn = Database.GetConnection(); // static call
             var cmd = new MySqlCommand("SELECT * FROM palvelu", conn);
             using var reader = await cmd.ExecuteReaderAsync();
 
@@ -19,15 +18,17 @@ namespace tuotanto1.Services
             {
                 lista.Add(new Palvelu
                 {
-                    PalveluId = reader.GetInt32("palvelu_id"),
-                    AlueId = reader.GetInt32("alue_id"),
-                    Nimi = reader.GetString("nimi"),
-                    Kuvaus = reader.GetString("kuvaus"),
-                    Hinta = reader.GetDecimal("hinta"),
-                    Alv = reader.GetDecimal("alv")
+                    PalveluId = reader.GetInt32(reader.GetOrdinal("palvelu_id")),
+                    AlueId = reader.GetInt32(reader.GetOrdinal("alue_id")),
+                    Nimi = reader.GetString(reader.GetOrdinal("nimi")),
+                    Kuvaus = reader.GetString(reader.GetOrdinal("kuvaus")),
+                    Hinta = reader.GetDecimal(reader.GetOrdinal("hinta")),
+                    Alv = reader.GetDecimal(reader.GetOrdinal("alv"))
                 });
             }
+
             return lista;
         }
     }
 }
+

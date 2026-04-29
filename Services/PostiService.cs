@@ -6,12 +6,11 @@ namespace tuotanto1.Services
 {
     public class PostiService
     {
-        private readonly Database _db = new();
-
         public async Task<List<Posti>> HaePostitAsync()
         {
             var lista = new List<Posti>();
-            using var conn = await _db.GetConnectionAsync();
+
+            using var conn = Database.GetConnection(); // static call
             var cmd = new MySqlCommand("SELECT * FROM posti", conn);
             using var reader = await cmd.ExecuteReaderAsync();
 
@@ -19,10 +18,11 @@ namespace tuotanto1.Services
             {
                 lista.Add(new Posti
                 {
-                    Postinumero = reader.GetString("postinumero"),
-                    Toimipaikka = reader.GetString("toimipaikka")
+                    Postinumero = reader.GetString(reader.GetOrdinal("postinumero")),
+                    Toimipaikka = reader.GetString(reader.GetOrdinal("toimipaikka"))
                 });
             }
+
             return lista;
         }
     }
