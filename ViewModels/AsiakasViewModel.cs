@@ -1,63 +1,61 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using tuotanto1.Models;
 using tuotanto1.Services;
 
-
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using tuotanto1.Services;
-using tuotanto1.ViewModels;
-public class AsiakasViewModel : BaseViewModel
+namespace tuotanto1.ViewModels
 {
-    public ObservableCollection<Asiakas> Asiakkaat { get; set; } = new();
-
-    private string hakusana;
-    public string Hakusana
+    public class AsiakasViewModel : BaseViewModel
     {
-        get => hakusana;
-        set
+        public ObservableCollection<Asiakas> Asiakkaat { get; set; } = new();
+
+        private string hakusana;
+        public string Hakusana
         {
-            hakusana = value;
-            OnPropertyChanged();
+            get => hakusana;
+            set
+            {
+                hakusana = value;
+                OnPropertyChanged();
+                HaeAsiakkaat();
+            }
+        }
+
+        public ICommand LisaaAsiakasCommand { get; }
+        public ICommand MuokkaaAsiakastaCommand { get; }
+        public ICommand PoistaAsiakasCommand { get; }
+
+        public AsiakasViewModel()
+        {
+            LisaaAsiakasCommand = new Command(LisaaAsiakas);
+            MuokkaaAsiakastaCommand = new Command<Asiakas>(MuokkaaAsiakasta);
+            PoistaAsiakasCommand = new Command<Asiakas>(PoistaAsiakas);
+
             HaeAsiakkaat();
         }
-    }
 
-    public ICommand LisaaAsiakasCommand { get; }
-    public ICommand MuokkaaAsiakastaCommand { get; }
-    public ICommand PoistaAsiakasCommand { get; }
+        private void HaeAsiakkaat()
+        {
+            Asiakkaat.Clear();
+            var lista = AsiakasService.HaeAsiakkaat(Hakusana);
 
-    public AsiakasViewModel()
-    {
-        LisaaAsiakasCommand = new Command(LisaaAsiakas);
-        MuokkaaAsiakastaCommand = new Command<Asiakas>(MuokkaaAsiakasta);
-        PoistaAsiakasCommand = new Command<Asiakas>(PoistaAsiakas);
+            foreach (var a in lista)
+                Asiakkaat.Add(a);
+        }
 
-        HaeAsiakkaat();
-    }
+        private async void LisaaAsiakas()
+        {
+            await Shell.Current.GoToAsync("LisaaAsiakasPage");
+        }
 
-    private void HaeAsiakkaat()
-    {
-        Asiakkaat.Clear();
-        var lista = AsiakasService.HaeAsiakkaat(Hakusana);
+        private void MuokkaaAsiakasta(Asiakas asiakas)
+        {
+        }
 
-        foreach (var a in lista)
-            Asiakkaat.Add(a);
-    }
-
-    private async void LisaaAsiakas()
-    {
-        await Shell.Current.GoToAsync("LisaaAsiakasPage");
-    }
-
-    private void MuokkaaAsiakasta(Asiakas asiakas)
-    {
-        // Navigointi muokkauslomakkeelle
-    }
-
-    private void PoistaAsiakas(Asiakas asiakas)
-    {
-        AsiakasService.PoistaAsiakas(asiakas.AsiakasID);
-        HaeAsiakkaat();
+        private void PoistaAsiakas(Asiakas asiakas)
+        {
+            AsiakasService.PoistaAsiakas(asiakas.AsiakasID);
+            HaeAsiakkaat();
+        }
     }
 }

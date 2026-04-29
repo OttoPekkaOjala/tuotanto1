@@ -1,5 +1,5 @@
 using tuotanto1.Models;
-using tuotanto1.Data;
+using tuotanto1.Services;
 
 namespace tuotanto1.Views
 {
@@ -19,12 +19,12 @@ namespace tuotanto1.Views
                 Sukunimi = SukunimiEntry.Text,
                 Lahiosoite = LahiosoiteEntry.Text,
                 Postinumero = PostinumeroEntry.Text,
-                Email = EmailEntry.Text,
+                Sahkoposti = EmailEntry.Text,
                 Puhelinnumero = PuhelinnumeroEntry.Text
             };
 
-            // Tallennus MySQL:‰‰n
-            Database.LisaaAsiakas(uusiAsiakas);
+            // Tallennus MySQL:‰‰n palvelun kautta
+            await AsiakasService.LisaaAsiakas(uusiAsiakas);
 
             await DisplayAlert("Tallennettu", "Asiakas lis‰tty onnistuneesti!", "OK");
 
@@ -33,3 +33,4 @@ namespace tuotanto1.Views
         }
     }
 }
+
