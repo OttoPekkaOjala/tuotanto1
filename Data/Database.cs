@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using MySqlConnector;
+﻿using MySqlConnector;
 using tuotanto1.Models;
 
 namespace tuotanto1.Data
