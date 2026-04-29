@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using tuotanto1.Models;
+using tuotanto1.Services;
 
-namespace tuotanto1.ViewModels;
 
 using System.Collections.ObjectModel;
 using System.Windows.Input;

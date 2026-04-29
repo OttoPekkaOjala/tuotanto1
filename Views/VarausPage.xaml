@@ -1,83 +1,38 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="tuotanto1.Views.VarausPage"
-             Title="Varaukset">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="tuotanto1.Views.VarausPage"
+    BackgroundColor="#121212">
 
-    <Grid ColumnDefinitions="180, *">
+    <VerticalStackLayout Padding="20" Spacing="12">
 
-        <!-- Vasen valikkopaneeli -->
-        <VerticalStackLayout BackgroundColor="{StaticResource PanelDark}"
-                             Padding="15"
-                             Spacing="12">
+        <Label Text="Varaukset"
+               FontSize="28"
+               TextColor="White"
+               HorizontalOptions="Center" />
 
-            <Label Text="Valikko"
-                   FontSize="20"
-                   TextColor="{StaticResource TextLight}"
-                   Margin="0,0,0,10" />
+        <Button Text="Uusi varaus"
+                BackgroundColor="#1E1E1E"
+                TextColor="White"
+                CornerRadius="6">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#333333" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#444444" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
-            <Button Text="Etusivu"
-                    Clicked="Etusivu_Clicked" />
-
-            <Button Text="Asiakkaat"
-                    Clicked="Asiakkaat_Clicked" />
-
-            <Button Text="Mökit"
-                    Clicked="Mokit_Clicked" />
-
-            <Button Text="Varaukset"
-                    Clicked="Varaukset_Clicked" />
-
-            <Button Text="Laskut"
-                    Clicked="Laskut_Clicked" />
-
-            <Button Text="Raportit"
-                    Clicked="Raportit_Clicked" />
-
-        </VerticalStackLayout>
-
-        <!-- Oikea sisältöalue -->
-        <VerticalStackLayout Grid.Column="1"
-                             Padding="25"
-                             Spacing="20">
-
-            <Label Text="Varausten hallinta"
-                   FontSize="26"
-                   TextColor="{StaticResource TextLight}" />
-
-            <Label Text="Tässä näet kaikki varaukset."
-                   FontSize="16"
-                   TextColor="#CCCCCC" />
-
-            <!-- Lista varauksista -->
-            <CollectionView ItemsSource="{Binding Varaukset}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BackgroundColor="{StaticResource PanelDark}"
-                               CornerRadius="8"
-                               Padding="12"
-                               Margin="0,5">
-
-                            <VerticalStackLayout Spacing="4">
-                                <Label Text="{Binding AsiakasNimi}"
-                                       FontSize="18" />
-                                <Label Text="{Binding MokkiNimi}"
-                                       FontSize="14"
-                                       TextColor="#BBBBBB" />
-                                <Label Text="{Binding AlkuPvm, StringFormat='Alkaa: {0:dd.MM.yyyy}'}"
-                                       FontSize="14"
-                                       TextColor="#BBBBBB" />
-                                <Label Text="{Binding LoppuPvm, StringFormat='Päättyy: {0:dd.MM.yyyy}'}"
-                                       FontSize="14"
-                                       TextColor="#BBBBBB" />
-                            </VerticalStackLayout>
-
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-        </VerticalStackLayout>
-
-    </Grid>
+    </VerticalStackLayout>
 </ContentPage>

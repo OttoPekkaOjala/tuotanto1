@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="tuotanto1.Views.AsiakasLomakePage"
+    Title="Lisää asiakas">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Entry x:Name="EtunimiEntry"
+                   Placeholder="Etunimi" />
+
+            <Entry x:Name="SukunimiEntry"
+                   Placeholder="Sukunimi" />
+
+            <Entry x:Name="LahiosoiteEntry"
+                   Placeholder="Lähiosoite" />
+
+            <Entry x:Name="PostinumeroEntry"
+                   Placeholder="Postinumero"
+                   Keyboard="Numeric" />
+
+            <Entry x:Name="EmailEntry"
+                   Placeholder="Email"
+                   Keyboard="Email" />
+
+            <Entry x:Name="PuhelinnumeroEntry"
+                   Placeholder="Puhelinnumero"
+                   Keyboard="Telephone" />
+
+            <Button Text="Tallenna"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    Clicked="Tallenna_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

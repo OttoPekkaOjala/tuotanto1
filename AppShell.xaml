@@ -3,21 +3,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:tuotanto1.Views"
-    xmlns:local="clr-namespace:tuotanto1"
-    x:Class="tuotanto1.AppShell">
+    x:Class="tuotanto1.AppShell"
+    BackgroundColor="#121212"
+    Shell.NavBarIsVisible="True"
+    Shell.FlyoutBackgroundColor="#1E1E1E"
+    Shell.FlyoutBehavior="Flyout">
 
-    
-    <ShellContent
-        Title="Etusivu"
-        ContentTemplate="{DataTemplate local:MainPage}" />
+    <FlyoutItem Title="Etusivu" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Etusivu"
+                  Route="MainPage"
+                  ContentTemplate="{DataTemplate views:MainPage}" />
+    </FlyoutItem>
 
-    <ShellContent
-        Title="Asiakkaat"
-        ContentTemplate="{DataTemplate views:AsiakasPage}" />
 
-    <ShellContent
-        Title="Mökit"
-        ContentTemplate="{DataTemplate views:MokkiPage}" />
+    <!-- ASIAKKAAT -->
+    <FlyoutItem Title="Asiakkaat" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Asiakkaat"
+                      Route="Asiakkaat"
+                      ContentTemplate="{DataTemplate views:AsiakasPage}" />
+    </FlyoutItem>
+
+    <!-- MÖKIT -->
+    <FlyoutItem Title="Mökit" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Mökit"
+                      Route="Mokit"
+                      ContentTemplate="{DataTemplate views:MokkiPage}" />
+    </FlyoutItem>
+
+    <!-- VARAUKSET -->
+    <FlyoutItem Title="Varaukset" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Varaukset"
+                      Route="Varaukset"
+                      ContentTemplate="{DataTemplate views:VarausPage}" />
+    </FlyoutItem>
+
+    <!-- LASKUT -->
+    <FlyoutItem Title="Laskut" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Laskut"
+                      Route="Laskut"
+                      ContentTemplate="{DataTemplate views:LaskuPage}" />
+    </FlyoutItem>
+
+    <!-- RAPORTIT -->
+    <FlyoutItem Title="Raportit" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Raportit"
+                      Route="Raportit"
+                      ContentTemplate="{DataTemplate views:RaportitPage}" />
+    </FlyoutItem>
 
 
 </Shell>

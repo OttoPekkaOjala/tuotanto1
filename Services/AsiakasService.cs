@@ -10,12 +10,20 @@ namespace tuotanto1.Services;
 using Microsoft.Maui.Controls.Shapes;
 using tuotanto1.Data;
 using tuotanto1.Models;
+using MySqlConnector;
 
     public static class AsiakasService
-    {
+{
         public static List<Asiakas> HaeAsiakkaat(string hakusana)
+    {
+        private readonly Database _db = new();
+
+        public async Task<List<Asiakas>> HaeKaikkiAsiakkaatAsync()
         {
             var lista = new List<Asiakas>();
+            using var conn = await _db.GetConnectionAsync();
+            var cmd = new MySqlCommand("SELECT * FROM asiakas", conn);
+            using var reader = await cmd.ExecuteReaderAsync();
 
             using var conn = Database.GetConnection();
         string sql = @"SELECT * FROM asiakas 
@@ -27,9 +35,9 @@ using tuotanto1.Models;
 
         using var reader = cmd.ExecuteReader();
         while (reader.Read())
-        {
-            lista.Add(new Asiakas
             {
+                lista.Add(new Asiakas
+                {
                 AsiakasID = reader.GetInt32(reader.GetOrdinal("asiakas_id")),
 
                 Etunimi = reader.IsDBNull(reader.GetOrdinal("etunimi"))
@@ -55,10 +63,10 @@ using tuotanto1.Models;
                 Postinumero = reader.IsDBNull(reader.GetOrdinal("postinro"))
         ? ""
         : reader.GetString(reader.GetOrdinal("postinro"))
-            });
-        }
+                });
+            }
 
-        return lista;
+            return lista;
         }
 
         public static void PoistaAsiakas(int id)
@@ -82,7 +90,7 @@ using tuotanto1.Models;
             long count = (long)await checkCmd.ExecuteScalarAsync();
 
             if (count == 0)
-            {
+        {
                 string insertPostiSql = "INSERT INTO posti (postinro, toimipaikka) VALUES (@postinro, 'Tuntematon')";
                 using var insertPostiCmd = new MySqlCommand(insertPostiSql, conn);
                 insertPostiCmd.Parameters.AddWithValue("@postinro", asiakas.Postinumero);
@@ -96,8 +104,8 @@ using tuotanto1.Models;
 
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@postinro", asiakas.Postinumero);
-        cmd.Parameters.AddWithValue("@etunimi", asiakas.Etunimi);
-        cmd.Parameters.AddWithValue("@sukunimi", asiakas.Sukunimi);
+            cmd.Parameters.AddWithValue("@etunimi", asiakas.Etunimi);
+            cmd.Parameters.AddWithValue("@sukunimi", asiakas.Sukunimi);
         cmd.Parameters.AddWithValue("@email", asiakas.Sahkoposti);
         cmd.Parameters.AddWithValue("@puhelin", asiakas.Puhelinnumero);
 

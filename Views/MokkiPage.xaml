@@ -1,28 +1,38 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:tuotanto1.ViewModels"
-             x:Class="tuotanto1.Views.MokkiPage">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="tuotanto1.Views.MokkiPage"
+    BackgroundColor="#121212">
 
-    <ContentPage.BindingContext>
-        <vm:MokkiViewModel />
-    </ContentPage.BindingContext>
+    <VerticalStackLayout Padding="20" Spacing="12">
 
-    <VerticalStackLayout Padding="20">
-
-        <Label Text="Mökkien hallinta"
-               FontSize="24"
+        <Label Text="Mökit"
+               FontSize="28"
+               TextColor="White"
                HorizontalOptions="Center" />
 
-        <ListView ItemsSource="{Binding Mokit}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Mokkinimi}"
-                              Detail="{Binding Katuosoite}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Button Text="Lisää uusi mökki"
+                BackgroundColor="#1E1E1E"
+                TextColor="White"
+                CornerRadius="6">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#333333" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#444444" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
     </VerticalStackLayout>
-
 </ContentPage>

@@ -8,6 +8,6 @@ namespace tuotanto1.Models;
 
 public class Posti
 {
-    public string Postinro { get; set; }
+    public string Postinumero { get; set; }
     public string Toimipaikka { get; set; }
 }
