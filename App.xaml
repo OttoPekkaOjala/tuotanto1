@@ -1,25 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:tuotanto1"
              x:Class="tuotanto1.App">
 
     <Application.Resources>
         <ResourceDictionary>
 
-            <!-- Värit -->
+            <!-- DARK THEME COLORS -->
             <Color x:Key="BackgroundDark">#1E1E1E</Color>
             <Color x:Key="PanelDark">#252525</Color>
             <Color x:Key="ButtonDark">#333333</Color>
             <Color x:Key="ButtonDarkPressed">#444444</Color>
             <Color x:Key="TextLight">White</Color>
+            <Color x:Key="AccentRed">#FF4444</Color>
 
-            <!-- Sivun taustat -->
+            <!-- GLOBAL PAGE BACKGROUND -->
             <Style TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource BackgroundDark}" />
             </Style>
 
-            <!-- Yleinen nappityyli -->
+            <!-- GLOBAL LABEL STYLE -->
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextLight}" />
+            </Style>
+
+            <!-- GLOBAL ENTRY STYLE -->
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource PanelDark}" />
+                <Setter Property="TextColor" Value="{StaticResource TextLight}" />
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+
+            <!-- GLOBAL BUTTON STYLE -->
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonDark}" />
                 <Setter Property="TextColor" Value="{StaticResource TextLight}" />
@@ -27,32 +40,21 @@
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="Padding" Value="10,5" />
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-
-                            <!-- Normaali tila -->
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource ButtonDark}" />
-                                </VisualState.Setters>
-                            </VisualState>
-
-                            <!-- Painettu tila -->
-                            <VisualState x:Name="Pressed">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource ButtonDarkPressed}" />
-                                </VisualState.Setters>
-                            </VisualState>
-
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
             </Style>
 
-            <!-- Otsikot -->
-            <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource TextLight}" />
+            <!-- GLOBAL COLLECTIONVIEW BACKGROUND -->
+            <Style TargetType="CollectionView">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundDark}" />
+            </Style>
+
+            <!-- SHELL (TOP BAR + FLYOUT) -->
+            <Style TargetType="Shell">
+                <Setter Property="FlyoutBackgroundColor" Value="#1E1E1E" />
+                <Setter Property="BackgroundColor" Value="#1E1E1E" />
+                <Setter Property="TitleColor" Value="White" />
+                <Setter Property="NavBarHasShadow" Value="False" />
+                <Setter Property="DisabledColor" Value="Gray" />
+                <Setter Property="UnselectedColor" Value="LightGray" />
             </Style>
 
         </ResourceDictionary>

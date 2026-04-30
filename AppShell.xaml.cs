@@ -9,6 +9,11 @@ namespace tuotanto1
             InitializeComponent();
             Routing.RegisterRoute("LisaaAsiakasPage", typeof(LisaaAsiakasPage));
 
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
+            Routing.RegisterRoute(nameof(AsiakasPage), typeof(AsiakasPage));
+            Routing.RegisterRoute(nameof(MokkiPage), typeof(MokkiPage));
+            
+
         }
     }
 }

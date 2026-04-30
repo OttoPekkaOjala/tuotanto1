@@ -1,36 +1,90 @@
-using tuotanto1.ViewModels;
+using System.Collections.ObjectModel;
 
-namespace tuotanto1.Views
+namespace tuotanto1.Views;
+
+public partial class MokkiPage : ContentPage
 {
-    public partial class MokkiPage : ContentPage
+    public ObservableCollection<Mokki> Mokit { get; set; }
+
+    private Mokki _muokattavaMokki;
+
+    public MokkiPage()
     {
-        private readonly MokkiViewModel _vm = new();
+        InitializeComponent();
 
-        public MokkiPage()
+        Mokit = new ObservableCollection<Mokki>
         {
-            InitializeComponent();
-            BindingContext = _vm;
-        }
+            new Mokki { Nimi = "Rantamökki", Sijainti = "Kuopio" },
+            new Mokki { Nimi = "Tunturimökki", Sijainti = "Levi" }
+        };
 
-        private async void Lataa_Clicked(object sender, EventArgs e)
-        {
-            await _vm.LataaMokitAsync();
-        }
-
-        private async void Lisaa_Clicked(object sender, EventArgs e)
-        {
-            await _vm.LisaaMokkiAsync(new Models.Mokki
-            {
-                AlueId = 1,
-                Nimi = "Testimökki",
-                Kuvaus = "Testikuvaus",
-                Katuosoite = "Mökkitie 1",
-                Postinumero = "70100",
-                Henkilomaara = 4,
-                Hinta = 120
-            });
-
-            await _vm.LataaMokitAsync();
-        }
+        MokitCollection.ItemsSource = Mokit;
     }
+
+    private void OnAddMokkiClicked(object sender, EventArgs e)
+    {
+        _muokattavaMokki = null;
+
+        NimiEntry.Text = "";
+        SijaintiEntry.Text = "";
+
+        LisaaFrame.IsVisible = true;
+    }
+
+    private void OnTallennaClicked(object sender, EventArgs e)
+    {
+        string nimi = NimiEntry.Text;
+        string sijainti = SijaintiEntry.Text;
+
+        if (string.IsNullOrWhiteSpace(nimi) || string.IsNullOrWhiteSpace(sijainti))
+        {
+            DisplayAlert("Virhe", "Täytä kaikki kentät", "OK");
+            return;
+        }
+
+        if (_muokattavaMokki == null)
+        {
+            Mokit.Add(new Mokki
+            {
+                Nimi = nimi,
+                Sijainti = sijainti
+            });
+        }
+        else
+        {
+            _muokattavaMokki.Nimi = nimi;
+            _muokattavaMokki.Sijainti = sijainti;
+
+            MokitCollection.ItemsSource = null;
+            MokitCollection.ItemsSource = Mokit;
+        }
+
+        LisaaFrame.IsVisible = false;
+    }
+
+    private void OnPeruutaClicked(object sender, EventArgs e)
+    {
+        LisaaFrame.IsVisible = false;
+    }
+
+    private void OnMuokkaaClicked(object sender, EventArgs e)
+    {
+        var mokki = (sender as Button)?.CommandParameter as Mokki;
+
+        if (mokki == null)
+            return;
+
+        _muokattavaMokki = mokki;
+
+        NimiEntry.Text = mokki.Nimi;
+        SijaintiEntry.Text = mokki.Sijainti;
+
+        LisaaFrame.IsVisible = true;
+    }
+}
+
+public class Mokki
+{
+    public string Nimi { get; set; }
+    public string Sijainti { get; set; }
 }

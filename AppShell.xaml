@@ -51,5 +51,18 @@
                       ContentTemplate="{DataTemplate views:RaportitPage}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Etusivu">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" />
+    </FlyoutItem>
+
+    <!-- Asiakkaat -->
+    <FlyoutItem Title="Asiakkaat">
+        <ShellContent ContentTemplate="{DataTemplate views:AsiakasPage}" />
+    </FlyoutItem>
+
+    <!-- Mökit -->
+    <FlyoutItem Title="Mökit">
+        <ShellContent ContentTemplate="{DataTemplate views:MokkiPage}" />
+    </FlyoutItem>
 
 </Shell>
