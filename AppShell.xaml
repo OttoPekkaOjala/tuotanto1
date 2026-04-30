@@ -7,10 +7,12 @@
     BackgroundColor="#121212"
     Shell.NavBarIsVisible="True"
     Shell.FlyoutBackgroundColor="#1E1E1E"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TitleColor="White">
+    
 
     <FlyoutItem Title="Etusivu" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Etusivu"
+        <ShellContent Title="Etusivu" 
                   Route="MainPage"
                   ContentTemplate="{DataTemplate views:MainPage}" />
     </FlyoutItem>

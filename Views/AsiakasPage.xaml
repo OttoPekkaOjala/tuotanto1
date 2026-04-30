@@ -8,7 +8,7 @@
         <viewmodel:AsiakasViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="Black">
 
         <Entry Placeholder="Hae asiakasta..."
                Text="{Binding Hakusana}"

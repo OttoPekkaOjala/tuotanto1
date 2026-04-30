@@ -8,8 +8,9 @@
     <ContentPage.BindingContext>
         <viewmodel:LisaaAsiakasViewModel />
     </ContentPage.BindingContext>
+    
 
-    <VerticalStackLayout Padding="20">
+    <VerticalStackLayout Padding="20" BackgroundColor="Black">
 
         <Entry Placeholder="Etunimi" Text="{Binding Etunimi}" />
         <Entry Placeholder="Sukunimi" Text="{Binding Sukunimi}" />
