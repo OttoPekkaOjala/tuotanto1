@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="tuotanto1.Views.VarausPage"
-             Title="Varaukset">
+             Title="Varaukset"
+             BackgroundColor="#1E1E1E">
 
     <Grid ColumnDefinitions="*,*" ColumnSpacing="30" Padding="20">
 
