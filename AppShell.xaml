@@ -9,14 +9,12 @@
     Shell.FlyoutBackgroundColor="#1E1E1E"
     Shell.FlyoutBehavior="Flyout"
     Shell.TitleColor="White">
-    
 
     <FlyoutItem Title="Etusivu" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Etusivu" 
-                  Route="MainPage"
-                  ContentTemplate="{DataTemplate views:MainPage}" />
+        <ShellContent Title="Etusivu"
+                      Route="MainPage"
+                      ContentTemplate="{DataTemplate views:MainPage}" />
     </FlyoutItem>
-
 
     <!-- ASIAKKAAT -->
     <FlyoutItem Title="Asiakkaat" FlyoutDisplayOptions="AsMultipleItems">
@@ -25,11 +23,25 @@
                       ContentTemplate="{DataTemplate views:AsiakasPage}" />
     </FlyoutItem>
 
+    <!-- ALUEET -->
+    <FlyoutItem Title="Alueet" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Alueet"
+                      Route="Alueet"
+                      ContentTemplate="{DataTemplate views:AluePage}" />
+    </FlyoutItem>
+
     <!-- MÖKIT -->
     <FlyoutItem Title="Mökit" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Mökit"
                       Route="Mokit"
                       ContentTemplate="{DataTemplate views:MokkiPage}" />
+    </FlyoutItem>
+
+    <!-- PALVELUT -->
+    <FlyoutItem Title="Palvelut" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Palvelut"
+                      Route="Palvelut"
+                      ContentTemplate="{DataTemplate views:PalveluPage}" />
     </FlyoutItem>
 
     <!-- VARAUKSET -->
@@ -51,20 +63,6 @@
         <ShellContent Title="Raportit"
                       Route="Raportit"
                       ContentTemplate="{DataTemplate views:RaportitPage}" />
-    </FlyoutItem>
-
-    <FlyoutItem Title="Etusivu">
-        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" />
-    </FlyoutItem>
-
-    <!-- Asiakkaat -->
-    <FlyoutItem Title="Asiakkaat">
-        <ShellContent ContentTemplate="{DataTemplate views:AsiakasPage}" />
-    </FlyoutItem>
-
-    <!-- Mökit -->
-    <FlyoutItem Title="Mökit">
-        <ShellContent ContentTemplate="{DataTemplate views:MokkiPage}" />
     </FlyoutItem>
 
 </Shell>

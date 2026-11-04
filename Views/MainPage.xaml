@@ -29,6 +29,13 @@
                 </VisualStateManager.VisualStateGroups>
             </Button>
 
+            <!-- Alueet -->
+            <Button Text="Alueet"
+                    Clicked="Alueet_Clicked"
+                    BackgroundColor="#333333"
+                    TextColor="White"
+                    CornerRadius="6" />
+
             <!-- Mökit -->
             <Button Text="Mökit"
                     Clicked="Mokit_Clicked"
@@ -47,6 +54,13 @@
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
             </Button>
+
+            <!-- Palvelut -->
+            <Button Text="Palvelut"
+                    Clicked="Palvelut_Clicked"
+                    BackgroundColor="#333333"
+                    TextColor="White"
+                    CornerRadius="6" />
 
             <!-- Varaukset -->
             <Button Text="Varaukset"

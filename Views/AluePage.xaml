@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="tuotanto1.Views.AluePage"
+             Title="Alueet">
+
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="30" Padding="20">
+
+        <!-- VASEN: HAKU JA LISTA -->
+        <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+
+            <Label Text="Alueet" FontSize="24" FontAttributes="Bold" />
+
+            <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="HakuEntry" Placeholder="Hae alueen nimellä" Completed="OnHaeClicked" />
+                <Button Grid.Column="1" Text="Hae" Clicked="OnHaeClicked" />
+            </Grid>
+
+            <CollectionView x:Name="AlueLista"
+                            Grid.Row="2"
+                            SelectionMode="Single"
+                            SelectionChanged="OnValintaMuuttui">
+                <CollectionView.EmptyView>
+                    <Label Text="Ei alueita." Padding="8" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#444444" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label Text="{Binding Nimi}" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- OIKEA: LISÄYS / MUOKKAUSLOMAKE -->
+        <VerticalStackLayout Grid.Column="1" Spacing="6">
+
+            <Label x:Name="LomakeOtsikko" Text="Uusi alue" FontSize="20" FontAttributes="Bold" />
+
+            <Label Text="Alueen nimi *" />
+            <Entry x:Name="NimiEntry" MaxLength="40" />
+
+            <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                <Button Text="Tallenna" Clicked="OnTallennaClicked" />
+                <Button Text="Tyhjennä / uusi" Clicked="OnUusiClicked" />
+                <Button x:Name="PoistaButton" Text="Poista" BackgroundColor="#8B0000"
+                        IsEnabled="False" Clicked="OnPoistaClicked" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

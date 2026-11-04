@@ -7,51 +7,36 @@ namespace tuotanto1.Services
     public static class AsiakasService
     {
         // ---------------------------------------------------------
-        // HAE ASIAKKAAT
+        // HAE ASIAKKAAT (nimellä tai sähköpostilla)
         // ---------------------------------------------------------
-        public static List<Asiakas> HaeAsiakkaat(string hakusana)
+        public static List<Asiakas> HaeAsiakkaat(string? hakusana)
         {
             var lista = new List<Asiakas>();
 
             using var conn = Database.GetConnection();
 
             string sql = @"SELECT * FROM asiakas
-                           WHERE etunimi LIKE @hakusana
-                           OR sukunimi LIKE @hakusana";
+                           WHERE LOWER(IFNULL(etunimi, '')) LIKE @hakusana
+                              OR LOWER(IFNULL(sukunimi, '')) LIKE @hakusana
+                              OR LOWER(CONCAT(IFNULL(etunimi, ''), ' ', IFNULL(sukunimi, ''))) LIKE @hakusana
+                              OR LOWER(IFNULL(email, '')) LIKE @hakusana
+                           ORDER BY sukunimi, etunimi";
 
             using var cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@hakusana", $"%{hakusana}%");
+            cmd.Parameters.AddWithValue("@hakusana", DbApu.Hakuehto(hakusana));
 
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 lista.Add(new Asiakas
                 {
-                    AsiakasID = reader.GetInt32(reader.GetOrdinal("asiakas_id")),
-
-                    Etunimi = reader.IsDBNull(reader.GetOrdinal("etunimi"))
-                        ? ""
-                        : reader.GetString(reader.GetOrdinal("etunimi")),
-
-                    Sukunimi = reader.IsDBNull(reader.GetOrdinal("sukunimi"))
-                        ? ""
-                        : reader.GetString(reader.GetOrdinal("sukunimi")),
-
-                    Sahkoposti = reader.IsDBNull(reader.GetOrdinal("email"))
-                        ? ""
-                        : reader.GetString(reader.GetOrdinal("email")),
-
-                    Puhelinnumero = reader.IsDBNull(reader.GetOrdinal("puhelinnro"))
-                        ? ""
-                        : reader.GetString(reader.GetOrdinal("puhelinnro")),
-
-                    Lahiosoite = reader.IsDBNull(reader.GetOrdinal("lahiosoite"))
-                        ? ""
-                        : reader.GetString(reader.GetOrdinal("lahiosoite")),
-
-                    Postinumero = reader.IsDBNull(reader.GetOrdinal("postinro"))
-                        ? ""
-                        : reader.GetString(reader.GetOrdinal("postinro"))
+                    AsiakasID = DbApu.Luku(reader, "asiakas_id"),
+                    Etunimi = DbApu.Teksti(reader, "etunimi"),
+                    Sukunimi = DbApu.Teksti(reader, "sukunimi"),
+                    Sahkoposti = DbApu.Teksti(reader, "email"),
+                    Puhelinnumero = DbApu.Teksti(reader, "puhelinnro"),
+                    Lahiosoite = DbApu.Teksti(reader, "lahiosoite"),
+                    Postinumero = DbApu.Teksti(reader, "postinro")
                 });
             }
 
@@ -79,42 +64,44 @@ namespace tuotanto1.Services
         {
             using var conn = Database.GetConnection();
 
-            // 1. Tarkista löytyykö postinumero posti-taulusta
-            string checkSql = "SELECT COUNT(*) FROM posti WHERE postinro = @postinro";
-            using (var checkCmd = new MySqlCommand(checkSql, conn))
-            {
-                checkCmd.Parameters.AddWithValue("@postinro", asiakas.Postinumero);
-                long count = (long)await checkCmd.ExecuteScalarAsync();
+            await PostiService.VarmistaPostinumeroAsync(conn, asiakas.Postinumero);
 
-                if (count == 0)
-                {
-                    // Lisää postinumero automaattisesti
-                    string insertPostiSql =
-                        "INSERT INTO posti (postinro, toimipaikka) VALUES (@postinro, 'Tuntematon')";
-
-                    using var insertPostiCmd = new MySqlCommand(insertPostiSql, conn);
-                    insertPostiCmd.Parameters.AddWithValue("@postinro", asiakas.Postinumero);
-                    await insertPostiCmd.ExecuteNonQueryAsync();
-                }
-            }
-
-            // 2. Lisää asiakas
-            string sql = @"INSERT INTO asiakas (postinro, etunimi, sukunimi, email, puhelinnro)
-                           VALUES (@postinro, @etunimi, @sukunimi, @email, @puhelin)";
+            string sql = @"INSERT INTO asiakas (postinro, etunimi, sukunimi, lahiosoite, email, puhelinnro)
+                           VALUES (@postinro, @etunimi, @sukunimi, @lahiosoite, @email, @puhelin)";
 
             using var cmd = new MySqlCommand(sql, conn);
+            LisaaParametrit(cmd, asiakas);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        // ---------------------------------------------------------
+        // MUOKKAA ASIAKASTA
+        // ---------------------------------------------------------
+        public static async Task MuokkaaAsiakas(Asiakas asiakas)
+        {
+            using var conn = Database.GetConnection();
+
+            await PostiService.VarmistaPostinumeroAsync(conn, asiakas.Postinumero);
+
+            string sql = @"UPDATE asiakas
+                           SET postinro=@postinro, etunimi=@etunimi, sukunimi=@sukunimi,
+                               lahiosoite=@lahiosoite, email=@email, puhelinnro=@puhelin
+                           WHERE asiakas_id=@id";
+
+            using var cmd = new MySqlCommand(sql, conn);
+            LisaaParametrit(cmd, asiakas);
+            cmd.Parameters.AddWithValue("@id", asiakas.AsiakasID);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        private static void LisaaParametrit(MySqlCommand cmd, Asiakas asiakas)
+        {
             cmd.Parameters.AddWithValue("@postinro", asiakas.Postinumero);
             cmd.Parameters.AddWithValue("@etunimi", asiakas.Etunimi);
             cmd.Parameters.AddWithValue("@sukunimi", asiakas.Sukunimi);
+            cmd.Parameters.AddWithValue("@lahiosoite", asiakas.Lahiosoite);
             cmd.Parameters.AddWithValue("@email", asiakas.Sahkoposti);
             cmd.Parameters.AddWithValue("@puhelin", asiakas.Puhelinnumero);
-
-            await cmd.ExecuteNonQueryAsync();
         }
     }
 }
-
-
-
-
-

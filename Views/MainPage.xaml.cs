@@ -15,6 +15,16 @@ namespace tuotanto1.Views
             await Shell.Current.GoToAsync("//Asiakkaat");
         }
 
+        private async void Alueet_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Alueet");
+        }
+
+        private async void Palvelut_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Palvelut");
+        }
+
         private async void Mokit_Clicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//Mokit");

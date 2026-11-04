@@ -4,81 +4,85 @@
              x:Class="tuotanto1.Views.MokkiPage"
              Title="Mökit">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="30" Padding="20">
 
-        <Label Text="Mökit"
-               FontSize="28"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+        <!-- VASEN: HAKU JA LISTA -->
+        <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*" RowSpacing="10">
 
-        <Button Text="Lisää uusi mökki"
-                Clicked="OnAddMokkiClicked"
-                HeightRequest="45" />
+            <Label Text="Mökit" FontSize="24" FontAttributes="Bold" />
 
-        <!-- LISTA -->
-        <CollectionView x:Name="MokitCollection">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="0,5" CornerRadius="6" BackgroundColor="#333">
-                        <HorizontalStackLayout Spacing="10">
+            <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="HakuEntry" Placeholder="Hae mökin nimellä, alueella tai osoitteella" Completed="OnHaeClicked" />
+                <Button Grid.Column="1" Text="Hae" Clicked="OnHaeClicked" />
+            </Grid>
 
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Nimi}"
-                                       FontAttributes="Bold"
-                                       TextColor="White" />
-                                <Label Text="{Binding Sijainti}"
-                                       TextColor="LightGray" />
-                            </VerticalStackLayout>
+            <CollectionView x:Name="MokkiLista"
+                            Grid.Row="2"
+                            SelectionMode="Single"
+                            SelectionChanged="OnValintaMuuttui">
+                <CollectionView.EmptyView>
+                    <Label Text="Ei mökkejä." Padding="8" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#444444" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label Text="{Binding Nimi}" FontAttributes="Bold" />
+                            <Label Text="{Binding Lisatiedot}" TextColor="LightGray" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
 
-                            <Button Text="Muokkaa"
-                                    Clicked="OnMuokkaaClicked"
-                                    CommandParameter="{Binding}"
-                                    HorizontalOptions="EndAndExpand" />
+        <!-- OIKEA: LISÄYS / MUOKKAUSLOMAKE -->
+        <ScrollView Grid.Column="1">
+            <VerticalStackLayout Spacing="6">
 
-                        </HorizontalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                <Label x:Name="LomakeOtsikko" Text="Uusi mökki" FontSize="20" FontAttributes="Bold" />
 
-        <!-- LISÄYS / MUOKKAUSLOMAKE -->
-        <Frame x:Name="LisaaFrame"
-               IsVisible="False"
-               Padding="15"
-               CornerRadius="8"
-               BackgroundColor="#222">
+                <Label Text="Alue *" />
+                <Picker x:Name="AluePicker" Title="Valitse alue" ItemDisplayBinding="{Binding Nimi}"
+                        TextColor="White" TitleColor="LightGray" BackgroundColor="#252525" />
 
-            <VerticalStackLayout Spacing="10">
+                <Label Text="Mökin nimi *" />
+                <Entry x:Name="NimiEntry" MaxLength="45" />
 
-                <Label Text="Lisää / Muokkaa mökkiä"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="White" />
+                <Label Text="Katuosoite" />
+                <Entry x:Name="KatuosoiteEntry" MaxLength="45" />
 
-                <Entry x:Name="NimiEntry"
-                       Placeholder="Mökin nimi"
-                       TextColor="White"
-                       PlaceholderColor="Gray" />
+                <Label Text="Postinumero *" />
+                <Entry x:Name="PostinumeroEntry" MaxLength="5" Keyboard="Numeric" />
 
-                <Entry x:Name="SijaintiEntry"
-                       Placeholder="Sijainti"
-                       TextColor="White"
-                       PlaceholderColor="Gray" />
+                <Label Text="Hinta / vrk (€) *" />
+                <Entry x:Name="HintaEntry" Keyboard="Numeric" />
 
-                <Button Text="Tallenna"
-                        Clicked="OnTallennaClicked"
-                        BackgroundColor="#555"
-                        TextColor="White" />
+                <Label Text="Henkilömäärä *" />
+                <Entry x:Name="HenkilomaaraEntry" Keyboard="Numeric" />
 
-                <Button Text="Peruuta"
-                        Clicked="OnPeruutaClicked"
-                        BackgroundColor="#444"
-                        TextColor="White" />
+                <Label Text="Kuvaus" />
+                <Entry x:Name="KuvausEntry" MaxLength="150" />
+
+                <Label Text="Varustelu" />
+                <Entry x:Name="VarusteluEntry" MaxLength="100" />
+
+                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                    <Button Text="Tallenna" Clicked="OnTallennaClicked" />
+                    <Button Text="Tyhjennä / uusi" Clicked="OnUusiClicked" />
+                    <Button x:Name="PoistaButton" Text="Poista" BackgroundColor="#8B0000"
+                            IsEnabled="False" Clicked="OnPoistaClicked" />
+                </HorizontalStackLayout>
 
             </VerticalStackLayout>
-
-        </Frame>
-
-    </VerticalStackLayout>
-
+        </ScrollView>
+    </Grid>
 </ContentPage>

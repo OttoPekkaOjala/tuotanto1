@@ -1,45 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:tuotanto1.ViewModels"
-             x:Class="tuotanto1.Views.AsiakasPage">
+             x:Class="tuotanto1.Views.AsiakasPage"
+             Title="Asiakkaat">
 
-    <ContentPage.BindingContext>
-        <viewmodel:AsiakasViewModel />
-    </ContentPage.BindingContext>
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="30" Padding="20">
 
-    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="Black">
+        <!-- VASEN: HAKU JA LISTA -->
+        <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*" RowSpacing="10">
 
-        <Entry Placeholder="Hae asiakasta..."
-               Text="{Binding Hakusana}"
-               TextChanged="OnSearchChanged"/>
+            <Label Text="Asiakkaat" FontSize="24" FontAttributes="Bold" />
 
-        <Button Text="Lisää uusi asiakas"
-                Command="{Binding LisaaAsiakasCommand}" />
+            <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="HakuEntry"
+                       Placeholder="Hae nimellä tai sähköpostilla"
+                       Completed="OnHaeClicked" />
+                <Button Grid.Column="1" Text="Hae" Clicked="OnHaeClicked" />
+            </Grid>
 
-        <CollectionView ItemsSource="{Binding Asiakkaat}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="2*,2*,Auto,Auto" Padding="5">
+            <CollectionView x:Name="AsiakasLista"
+                            Grid.Row="2"
+                            SelectionMode="Single"
+                            SelectionChanged="OnValintaMuuttui">
+                <CollectionView.EmptyView>
+                    <Label Text="Ei asiakkaita." Padding="8" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#444444" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label Text="{Binding Nimi}" FontAttributes="Bold" />
+                            <Label Text="{Binding Sahkoposti}" TextColor="LightGray" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
 
-                        <Label Text="{Binding Nimi}" Grid.Column="0"/>
-                        <Label Text="{Binding Sahkoposti}" Grid.Column="1"/>
+        <!-- OIKEA: LISÄYS / MUOKKAUSLOMAKE -->
+        <ScrollView Grid.Column="1">
+            <VerticalStackLayout Spacing="6">
 
-                        <Button Text="Muokkaa"
-                                Grid.Column="2"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AsiakasViewModel}}, Path=MuokkaaAsiakastaCommand}"
-                                CommandParameter="{Binding}" />
+                <Label x:Name="LomakeOtsikko" Text="Uusi asiakas" FontSize="20" FontAttributes="Bold" />
 
-                        <Button Text="X"
-                                TextColor="Red"
-                                Grid.Column="3"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AsiakasViewModel}}, Path=PoistaAsiakasCommand}"
-                                CommandParameter="{Binding}" />
+                <Label Text="Etunimi *" />
+                <Entry x:Name="EtunimiEntry" MaxLength="20" />
 
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                <Label Text="Sukunimi *" />
+                <Entry x:Name="SukunimiEntry" MaxLength="40" />
 
-    </VerticalStackLayout>
+                <Label Text="Lähiosoite" />
+                <Entry x:Name="LahiosoiteEntry" MaxLength="40" />
+
+                <Label Text="Postinumero *" />
+                <Entry x:Name="PostinumeroEntry" MaxLength="5" Keyboard="Numeric" />
+
+                <Label Text="Sähköposti" />
+                <Entry x:Name="EmailEntry" MaxLength="50" Keyboard="Email" />
+
+                <Label Text="Puhelinnumero" />
+                <Entry x:Name="PuhelinEntry" MaxLength="15" Keyboard="Telephone" />
+
+                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                    <Button Text="Tallenna" Clicked="OnTallennaClicked" />
+                    <Button Text="Tyhjennä / uusi" Clicked="OnUusiClicked" />
+                    <Button x:Name="PoistaButton" Text="Poista" BackgroundColor="#8B0000"
+                            IsEnabled="False" Clicked="OnPoistaClicked" />
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

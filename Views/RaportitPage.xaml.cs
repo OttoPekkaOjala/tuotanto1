@@ -1,3 +1,4 @@
+﻿using tuotanto1.Data;
 using tuotanto1.ViewModels;
 
 namespace tuotanto1.Views
@@ -16,7 +17,15 @@ namespace tuotanto1.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await _viewModel.LataaRaportitAsync();
+
+            try
+            {
+                await _viewModel.LataaRaportitAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Virhe", DbApu.VirheTeksti(ex), "OK");
+            }
         }
     }
 }

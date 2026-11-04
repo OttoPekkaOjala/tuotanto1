@@ -1,38 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="tuotanto1.Views.VarausPage"
-    BackgroundColor="#121212">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="tuotanto1.Views.VarausPage"
+             Title="Varaukset">
 
-    <VerticalStackLayout Padding="20" Spacing="12">
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="30" Padding="20">
 
-        <Label Text="Varaukset"
-               FontSize="28"
-               TextColor="White"
-               HorizontalOptions="Center" />
+        <!-- VASEN: HAKU JA LISTA -->
+        <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*" RowSpacing="10">
 
-        <Button Text="Uusi varaus"
-                BackgroundColor="#1E1E1E"
-                TextColor="White"
-                CornerRadius="6">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#333333" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#444444" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
+            <Label Text="Varaukset" FontSize="24" FontAttributes="Bold" />
 
-    </VerticalStackLayout>
+            <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="HakuEntry" Placeholder="Hae asiakkaan tai mökin nimellä" Completed="OnHaeClicked" />
+                <Button Grid.Column="1" Text="Hae" Clicked="OnHaeClicked" />
+            </Grid>
+
+            <CollectionView x:Name="VarausLista"
+                            Grid.Row="2"
+                            SelectionMode="Single"
+                            SelectionChanged="OnValintaMuuttui">
+                <CollectionView.EmptyView>
+                    <Label Text="Ei varauksia." Padding="8" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#444444" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label Text="{Binding Otsikko}" FontAttributes="Bold" />
+                            <Label Text="{Binding Ajankohta}" TextColor="LightGray" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- OIKEA: LISÄYS / MUOKKAUSLOMAKE -->
+        <ScrollView Grid.Column="1">
+            <VerticalStackLayout Spacing="6">
+
+                <Label x:Name="LomakeOtsikko" Text="Uusi varaus" FontSize="20" FontAttributes="Bold" />
+
+                <Label Text="Asiakas *" />
+                <Picker x:Name="AsiakasPicker" Title="Valitse asiakas" ItemDisplayBinding="{Binding Nimi}"
+                        TextColor="White" TitleColor="LightGray" BackgroundColor="#252525" />
+
+                <Label Text="Mökki *" />
+                <Picker x:Name="MokkiPicker" Title="Valitse mökki" ItemDisplayBinding="{Binding Nimi}"
+                        TextColor="White" TitleColor="LightGray" BackgroundColor="#252525" />
+
+                <Label Text="Alkupäivä *" />
+                <DatePicker x:Name="AlkuPicker" Format="d.M.yyyy"
+                            TextColor="White" BackgroundColor="#252525" />
+
+                <Label Text="Loppupäivä *" />
+                <DatePicker x:Name="LoppuPicker" Format="d.M.yyyy"
+                            TextColor="White" BackgroundColor="#252525" />
+
+                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                    <Button Text="Tallenna" Clicked="OnTallennaClicked" />
+                    <Button Text="Tyhjennä / uusi" Clicked="OnUusiClicked" />
+                    <Button x:Name="PoistaButton" Text="Poista" BackgroundColor="#8B0000"
+                            IsEnabled="False" Clicked="OnPoistaClicked" />
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
