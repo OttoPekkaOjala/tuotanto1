@@ -68,7 +68,7 @@ CREATE TABLE `asiakas` (
   KEY `asiakas_snimi_idx` (`sukunimi`),
   KEY `asiakas_enimi_idx` (`etunimi`),
   CONSTRAINT `fk_asiakas_posti` FOREIGN KEY (`postinro`) REFERENCES `posti` (`postinro`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +77,7 @@ CREATE TABLE `asiakas` (
 
 LOCK TABLES `asiakas` WRITE;
 /*!40000 ALTER TABLE `asiakas` DISABLE KEYS */;
-INSERT INTO `asiakas` VALUES (2,'80000','Aleksi','Valavuori','vuorentie 88','aleksi.valavuori@savonia.fi','044 123 4567');
+INSERT INTO `asiakas` VALUES (2,'80000','Aleksi','Valavuori','vuorentie 88','aleksi.valavuori@savonia.fi','044 123 4567'),(3,'50500','Pasi','Kuikka','Silkkiuikuntie 40','pasikuikka82@gmail.com','0449876541');
 /*!40000 ALTER TABLE `asiakas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,6 +171,7 @@ CREATE TABLE `palvelu` (
 
 LOCK TABLES `palvelu` WRITE;
 /*!40000 ALTER TABLE `palvelu` DISABLE KEYS */;
+INSERT INTO `palvelu` VALUES (1,2,'Joulupukin tapaaminen','Koe Lapin aito joulu, ja käy tervehtimässä oikeaa Joulupukkia!',45.99,25.50),(2,1,'Puijontorni','Näe Kuopio yläilmoista. Hintaan kuuluu kyyditys, lippu torniin ja opastus',30.00,25.50);
 /*!40000 ALTER TABLE `palvelu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +195,7 @@ CREATE TABLE `posti` (
 
 LOCK TABLES `posti` WRITE;
 /*!40000 ALTER TABLE `posti` DISABLE KEYS */;
-INSERT INTO `posti` VALUES ('60800','Tuntematon'),('70200','Tuntematon'),('80000','Tuntematon');
+INSERT INTO `posti` VALUES ('50500','Tuntematon'),('60800','Tuntematon'),('70200','Tuntematon'),('80000','Tuntematon');
 /*!40000 ALTER TABLE `posti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +247,7 @@ CREATE TABLE `varaus` (
   KEY `fk_var_mok_idx` (`mokki_id`),
   CONSTRAINT `fk_varaus_mokki` FOREIGN KEY (`mokki_id`) REFERENCES `mokki` (`mokki_id`),
   CONSTRAINT `varaus_ibfk` FOREIGN KEY (`asiakas_id`) REFERENCES `asiakas` (`asiakas_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,6 +256,7 @@ CREATE TABLE `varaus` (
 
 LOCK TABLES `varaus` WRITE;
 /*!40000 ALTER TABLE `varaus` DISABLE KEYS */;
+INSERT INTO `varaus` VALUES (1,2,1,'2026-11-10 13:10:03','2026-11-10 13:10:03','2026-11-19 00:00:00','2026-11-21 00:00:00'),(2,3,2,'2026-11-10 13:12:40','2026-11-10 13:12:40','2026-12-24 00:00:00','2026-12-27 00:00:00');
 /*!40000 ALTER TABLE `varaus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-10 12:25:31
+-- Dump completed on 2026-11-10 13:39:29
