@@ -51,18 +51,18 @@
                       ContentTemplate="{DataTemplate views:VarausPage}" />
     </FlyoutItem>
 
-    <!-- LASKUT -->
+    <!-- Laskut ja Raportit piilotettu: jäivät jatkokehitykseen (sivut ovat yhä projektissa).
     <FlyoutItem Title="Laskut" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Laskut"
                       Route="Laskut"
                       ContentTemplate="{DataTemplate views:LaskuPage}" />
     </FlyoutItem>
 
-    <!-- RAPORTIT -->
     <FlyoutItem Title="Raportit" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Raportit"
                       Route="Raportit"
                       ContentTemplate="{DataTemplate views:RaportitPage}" />
     </FlyoutItem>
+    -->
 
 </Shell>

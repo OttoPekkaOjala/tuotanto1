@@ -83,6 +83,7 @@
 
             <!-- Laskut -->
             <Button Text="Laskut"
+                    IsVisible="False"
                     Clicked="Laskut_Clicked"
                     BackgroundColor="#1E1E1E"
                     TextColor="White"
@@ -102,6 +103,7 @@
 
             <!-- Raportit -->
             <Button Text="Raportit"
+                    IsVisible="False"
                     Clicked="Raportit_Clicked"
                     BackgroundColor="#1E1E1E"
                     TextColor="White"
